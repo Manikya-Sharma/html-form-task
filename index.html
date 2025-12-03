@@ -87,19 +87,32 @@
     </table>
 
     <script>
+      function convertArrayToString(inputArray) {
+        // Convert a given array of values to comma separated string
+        return Array(inputArray)
+          .reduce((prev, current) => prev + "," + String(current), "")
+          .substring(1);
+      }
+
       document.getElementById("main-form").addEventListener("submit", (e) => {
         // avoid page refresh
         e.preventDefault();
         // fill table
-        const formData = Object.fromEntries(new FormData(e.target).entries());
-        for (key in formData) {
-          const value = formData[key];
+        const formData = new FormData(e.target);
+        const keys = formData.keys();
+        const submittedData = {};
+        for (key of keys) {
+          // getAll ensures that all values are taken from multiple selection
+          submittedData[key] = formData.getAll(key);
+        }
+        for (key in submittedData) {
+          const value = submittedData[key];
           const row = document.createElement("tr");
           const keyCell = document.createElement("td");
           keyCell.textContent = key;
           row.appendChild(keyCell);
           const valueCell = document.createElement("td");
-          valueCell.textContent = value;
+          valueCell.textContent = convertArrayToString(value);
           row.appendChild(valueCell);
           document.getElementById("output-table").appendChild(row);
         }
