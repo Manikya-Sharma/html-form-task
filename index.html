@@ -79,11 +79,13 @@
       <button type="submit">Submit</button>
     </form>
 
-    <table id="output-table">
-      <tr>
-        <th>Key</th>
-        <th>Value</th>
-      </tr>
+    <table>
+      <tbody id="output-table">
+        <tr>
+          <th>Key</th>
+          <th>Value</th>
+        </tr>
+      </tbody>
     </table>
 
     <script>
@@ -94,10 +96,43 @@
           .substring(1);
       }
 
+      function clearEntries() {
+        // clear the previous entries of the table
+        const rows = document.getElementsByClassName("insertedRow");
+        // we need to store in separate array to avoid missing nodes while iterating
+        const toRemove = [];
+        for (const row of rows) {
+          toRemove.push(row);
+        }
+        for (const row of toRemove) {
+          row.remove();
+        }
+      }
+
+      function addEntries(data) {
+        for (key in data) {
+          const value = data[key];
+          const row = document.createElement("tr");
+
+          const keyCell = document.createElement("td");
+          keyCell.textContent = key;
+          row.appendChild(keyCell);
+
+          const valueCell = document.createElement("td");
+          valueCell.textContent = convertArrayToString(value);
+          row.appendChild(valueCell);
+
+          row.className = "insertedRow";
+          document.getElementById("output-table").appendChild(row);
+        }
+      }
+
       document.getElementById("main-form").addEventListener("submit", (e) => {
         // avoid page refresh
         e.preventDefault();
-        // fill table
+
+        clearEntries();
+
         const formData = new FormData(e.target);
         const keys = formData.keys();
         const submittedData = {};
@@ -105,17 +140,8 @@
           // getAll ensures that all values are taken from multiple selection
           submittedData[key] = formData.getAll(key);
         }
-        for (key in submittedData) {
-          const value = submittedData[key];
-          const row = document.createElement("tr");
-          const keyCell = document.createElement("td");
-          keyCell.textContent = key;
-          row.appendChild(keyCell);
-          const valueCell = document.createElement("td");
-          valueCell.textContent = convertArrayToString(value);
-          row.appendChild(valueCell);
-          document.getElementById("output-table").appendChild(row);
-        }
+
+        addEntries(submittedData);
       });
     </script>
   </body>
