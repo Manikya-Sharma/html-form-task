@@ -3,90 +3,126 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <title>HTML Forms Submission</title>
   </head>
   <body>
-    <form id="main-form">
-      <div>
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" required />
-      </div>
+    <header>
+      <h1>Personal Info</h1>
+      <p>Update your personal details here</p>
+    </header>
+    <main>
+      <form id="main-form">
+        <div>
+          <label for="name">Name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Your name"
+            required
+          />
+        </div>
 
-      <div>
-        <label for="age">Age</label>
-        <input id="age" name="age" type="number" required />
-      </div>
+        <div>
+          <label for="email">Email</label>
+          <input
+            name="email"
+            type="email"
+            id="email"
+            placeholder="Your email address"
+            required
+          />
+        </div>
 
-      <div>
-        <label>Gender</label>
-        <input
-          id="gender-male"
-          name="gender"
-          type="radio"
-          value="Male"
-          required
-        />
-        <label for="gender-male">Male</label>
-        <input id="gender-female" name="gender" type="radio" value="Female" />
-        <label for="gender-female">Female</label>
-        <input id="gender-other" name="gender" type="radio" value="Other" />
-        <label for="gender-other">Other</label>
-      </div>
+        <div class="double-input">
+          <div>
+            <label for="age">Age</label>
+            <input
+              id="age"
+              name="age"
+              type="number"
+              placeholder="Your age"
+              required
+            />
+          </div>
 
-      <div>
-        <label for="country">Country</label>
-        <select id="country" name="country" required>
-          <option value="India">India</option>
-          <option value="USA">USA</option>
-          <option value="Japan">Japan</option>
-          <option value="China">China</option>
-        </select>
-      </div>
+          <div>
+            <label for="phone">Telephone</label>
+            <input
+              name="phone"
+              type="tel"
+              id="phone"
+              placeholder="Your phone no."
+              required
+            />
+          </div>
+        </div>
 
-      <div>
-        <label for="tech">Technological Stack</label>
-        <select id="tech" name="tech" multiple required>
-          <option value="HTML">HTML</option>
-          <option value="CSS">CSS</option>
-          <option value="JS">JS</option>
-          <option value="React">React</option>
-          <option value="React Native">React Native</option>
-        </select>
-      </div>
+        <div>
+          <label for="country">Country</label>
+          <select id="country" name="country" required>
+            <option value="" disabled selected>Your country</option>
+            <option value="India">India</option>
+            <option value="USA">USA</option>
+            <option value="Japan">Japan</option>
+            <option value="China">China</option>
+          </select>
+        </div>
 
-      <div>
-        <label for="address">Address</label>
-        <textarea
-          name="address"
-          id="address"
-          rows="4"
-          cols="50"
-          required
-        ></textarea>
-      </div>
+        <div class="gender">
+          <label>Gender</label>
+          <input
+            id="gender-male"
+            name="gender"
+            type="radio"
+            value="Male"
+            required
+          />
+          <label for="gender-male">Male</label>
+          <input id="gender-female" name="gender" type="radio" value="Female" />
+          <label for="gender-female">Female</label>
+          <input id="gender-other" name="gender" type="radio" value="Other" />
+          <label for="gender-other">Other</label>
+        </div>
 
-      <div>
-        <label for="phone">Telephone</label>
-        <input name="phone" type="tel" id="phone" required />
-      </div>
+        <div>
+          <label for="tech">Technological Stack</label>
+          <select id="tech" name="tech" multiple required>
+            <option value="HTML">HTML</option>
+            <option value="CSS">CSS</option>
+            <option value="JS">JS</option>
+            <option value="React">React</option>
+            <option value="React Native">React Native</option>
+          </select>
+        </div>
 
-      <div>
-        <label for="email">Email</label>
-        <input name="email" type="email" id="email" required />
-      </div>
+        <div>
+          <label for="address">Address</label>
+          <textarea
+            name="address"
+            id="address"
+            rows="4"
+            cols="50"
+            required
+          ></textarea>
+        </div>
 
-      <button type="reset">Reset</button>
-      <button type="submit">Submit</button>
-    </form>
+        <div class="buttons">
+          <button type="reset">Reset</button>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
 
-    <table>
-      <tbody id="output-table">
-        <tr>
-          <th>Key</th>
-          <th>Value</th>
-        </tr>
-      </tbody>
-    </table>
+      <table>
+        <tbody id="output-table">
+          <tr>
+            <th>Key</th>
+            <th>Value</th>
+          </tr>
+        </tbody>
+      </table>
+    </main>
 
     <script>
       function convertArrayToString(inputArray) {
