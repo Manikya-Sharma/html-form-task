@@ -114,7 +114,8 @@
         </div>
       </form>
 
-      <table>
+      <!-- Table is hidden until data is submitted -->
+      <table class="hidden">
         <tbody id="output-table">
           <tr>
             <th>Key</th>
@@ -178,6 +179,8 @@
         }
 
         addEntries(submittedData);
+
+        document.getElementsByTagName("table")[0].classList.remove("hidden");
       });
     </script>
   </body>
