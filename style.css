@@ -61,6 +61,22 @@ select:required:invalid {
   color: #9c9c9c;
 }
 
+@media screen and (max-width: 554px) {
+  form > div {
+    margin-top: 25px;
+  }
+
+  .buttons {
+    margin-top: 50px;
+  }
+
+  input,
+  textarea,
+  select {
+    margin-top: 10px;
+  }
+}
+
 /* Age and Telephone */
 
 .double-input {
@@ -95,6 +111,13 @@ option[value=""][disabled] {
   display: grid;
   grid-template: 1fr 2fr / 1fr 1fr 1fr;
   gap: 7px;
+}
+
+@media screen and (max-width: 554px) {
+  .gender {
+    grid-template: 1fr 2fr 2fr 2fr / 1fr;
+    gap: 12px;
+  }
 }
 
 .gender label {
@@ -151,9 +174,16 @@ button {
   border: 1px solid #dfdfdf;
   border-radius: 30px;
   font: inherit;
+  font-weight: 600;
   padding: 7px 30px;
   transition-property: background-color;
   transition-duration: 200ms;
+}
+
+@media screen and (max-width: 554px) {
+  .buttons button {
+    width: 100%;
+  }
 }
 
 button:hover {
